@@ -6,7 +6,7 @@ import { useState, useEffect } from "react";
 
 export default function Dashboard() {
   const [sensorData, setSensorData] = useState<SensorData | undefined>();
-  const API_URL: string = "https://salmon-river-02040c310.4.azurestaticapps.net/api/";
+  const API_URL: string = "https://uistory-water-lvl.azurewebsites.net/api/";
   useEffect(() => {
     const fetchData = async () => {
       try {
