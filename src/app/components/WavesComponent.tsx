@@ -18,7 +18,7 @@ export default function WavesComponent(props: WavesComponentProps) {
 
   return (
     <>
-      <div className="percentage"> {percentage * 100}%</div>
+      <div className="percentage"> {Math.round(percentage * 100)}%</div>
       <div className="header">
         <div
           className="inner-header flex"
@@ -65,22 +65,21 @@ export default function WavesComponent(props: WavesComponentProps) {
               <use
                 xlinkHref="#gentle-wave"
                 x="48"
-                y="0"
-                fill="rgba(255,255,255,0.7)"
-              />
-              <use
-                xlinkHref="#gentle-wave"
-                x="48"
                 y="3"
-                fill="rgba(255,255,255,0.5)"
+                fill="rgba(139, 69, 19, 0.5)"
               />
               <use
                 xlinkHref="#gentle-wave"
                 x="48"
                 y="5"
-                fill="rgba(255,255,255,0.3)"
+                fill="rgba(139, 69, 19, 0.3)"
               />
-              <use xlinkHref="#gentle-wave" x="48" y="7" fill="#fff" />
+              <use
+                xlinkHref="#gentle-wave"
+                x="48"
+                y="7"
+                fill="rgb(139, 69, 19)"
+              />
             </g>
           </svg>
         </div>
