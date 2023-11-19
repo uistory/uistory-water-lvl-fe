@@ -27,12 +27,18 @@ export default function Dashboard() {
     if (sensorData) {
       return (
         <>
-          <WavesComponent item={sensorData}></WavesComponent>
+          <div className="dashboard">
+            <WavesComponent item={sensorData}></WavesComponent>
+          </div>
         </>
       );
     }
 
-    return <div>Nemám data. Napľuj!</div>;
+    return (
+      <div className="flex items-center justify-center h-screen">
+        <div className="text-3xl">Nemám Data. Utekaj Napľuť!</div>
+      </div>
+    );
   }
 
   return render();

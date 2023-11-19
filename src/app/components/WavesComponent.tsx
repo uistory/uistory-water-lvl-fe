@@ -12,8 +12,13 @@ export default function WavesComponent(props: WavesComponentProps) {
   const emptyTankRem: number = 55;
   const fullTankRem: number = 0;
   const percentage: number = item.distance / tankSize;
+  const fullnessPercentage: number = 1 - percentage;
   const currentLevelRem: number = emptyTankRem * percentage;
   const last = getDateTimeString(item.createdAtDate);
+  let baseColor: string = "";
+  let fillColor: string = "";
+
+  calculateFillColor(fullnessPercentage);
 
   function getDateTimeString(date: Date): string {
     const daysOfWeek = [
@@ -31,7 +36,6 @@ export default function WavesComponent(props: WavesComponentProps) {
       date.getDate() === currentDate.getDate() &&
       date.getMonth() === currentDate.getMonth() &&
       date.getFullYear() === currentDate.getFullYear();
-
     const day = date.getDate();
     const month = date.getMonth() + 1;
     const year = date.getFullYear();
@@ -50,12 +54,60 @@ export default function WavesComponent(props: WavesComponentProps) {
     }
   }
 
+  // Function to calculate the fill color based on the percentage
+  function calculateFillColor(percentage: number) {
+    if (percentage <= 0.6) {
+      baseColor = "rgb(103, 176, 50)";
+      fillColor = `rgba(103, 176, 50, 0.7)`;
+    } else if (percentage > 0.6 && percentage <= 0.8) {
+      baseColor = "rgb(251, 189, 0)";
+      fillColor = `rgba(251, 189, 0, 0.7)`;
+    } else {
+      baseColor = "rgb(253, 40, 19)";
+      fillColor = `rgba(253, 40, 19, 0.7)`;
+    }
+  }
+
+  function calculateTextColor(baseColor: string): string {
+    // Calculate the luminance of the background color
+    const rgb = baseColor.match(/\d+/g);
+    if (!rgb) return "black";
+    const luminance =
+      (0.299 * +rgb[0] + 0.587 * +rgb[1] + 0.114 * +rgb[2]) / 255;
+
+    // Choose white or black text based on luminance
+    return luminance > 0.5 ? "#000000" : "#FFFFFF";
+  }
+
   return (
     <>
-      <div className="tank">
-        <div className="status">
-          <div className="percentage"> {Math.round(percentage * 100)}%</div>
-          <div className="timestamp">Posledné meranie: {last}</div>
+      <div
+        className="tank"
+        style={{
+          backgroundColor: baseColor,
+          color: calculateTextColor(baseColor),
+        }}
+      >
+        <div className="flex items-center justify-center">
+          <div
+            className="status"
+            style={{
+              border: "5px solid " + baseColor,
+            }}
+          >
+            <div
+              className="percentage"
+              style={{
+                color: baseColor,
+              }}
+            >
+              {" "}
+              {Math.round(fullnessPercentage * 100)}%
+            </div>
+            <div className="timestamp">
+              <strong>{last}</strong>
+            </div>
+          </div>
         </div>
 
         <div className="header">
@@ -101,18 +153,8 @@ export default function WavesComponent(props: WavesComponentProps) {
                 />
               </defs>
               <g className="parallax">
-                <use
-                  xlinkHref="#gentle-wave"
-                  x="48"
-                  y="3"
-                  fill="rgba(139, 69, 19, 0.5)"
-                />
-                <use
-                  xlinkHref="#gentle-wave"
-                  x="48"
-                  y="7"
-                  fill="rgb(139, 69, 19)"
-                />
+                <use xlinkHref="#gentle-wave" x="48" y="3" fill={fillColor} />
+                <use xlinkHref="#gentle-wave" x="48" y="7" fill={baseColor} />
               </g>
             </svg>
           </div>

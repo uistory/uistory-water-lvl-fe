@@ -26,7 +26,6 @@ body {
 
 body {
   margin: 0;
-  background-color: rgb(var(--background-shit));
 }
 
 h1 {
@@ -42,10 +41,18 @@ p {
   color: #333333;
 }
 
+.dashboard {
+  height: 100%;
+}
+
+.tank {
+  height: 100%;
+}
+
 .header {
   position: relative;
   text-align: center;
-  background-color: rgb(200, 200, 200);
+  background-color: white;
 }
 .logo {
   width: 50px;
@@ -58,15 +65,23 @@ p {
 .status {
   text-align: center;
   position: absolute;
-  bottom: 50%;
+  bottom: 10%;
   z-index: 9999;
   font-weight: 300 !important;
   width: 100%;
-  color: white;
+  background: white;
+  border-radius: 50%;
+  width: 30rem;
+  height: 30rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .timestamp {
   font-size: 1.5em;
+  color: black;
 }
 
 .percentage {
@@ -144,4 +159,8 @@ p {
   h1 {
     font-size: 24px;
   }
+}
+
+.h-100 {
+  height: 100% !important;
 }
