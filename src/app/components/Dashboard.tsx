@@ -11,7 +11,8 @@ export default function Dashboard() {
     const fetchData = async () => {
       try {
         const response = await fetch(API_URL + "SensorStatus");
-        const data = await response.json();
+        const data: SensorData = await response.json();
+        data.createdAtDate = new Date(data.createdAt);
         setSensorData(data);
         console.log(data);
       } catch (error) {
@@ -22,9 +23,17 @@ export default function Dashboard() {
     fetchData();
   }, []);
 
-  return (
-    <>
-      <WavesComponent item={sensorData}></WavesComponent>
-    </>
-  );
+  function render() {
+    if (sensorData) {
+      return (
+        <>
+          <WavesComponent item={sensorData}></WavesComponent>
+        </>
+      );
+    }
+
+    return <div>Nemám data. Napľuj!</div>;
+  }
+
+  return render();
 }

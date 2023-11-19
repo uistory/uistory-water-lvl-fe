@@ -3,4 +3,5 @@ export interface SensorData {
   distance: number;
   unit: string;
   createdAt: string;
+  createdAtDate: Date;
 }
