@@ -1,8 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  //output: "standalone",
-  output: "export",
-  assetPrefix: "./",
+  output: "standalone",
+  spa: true,
 };
 
 module.exports = nextConfig;
