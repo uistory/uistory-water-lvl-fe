@@ -10,20 +10,22 @@ export default function Dashboard() {
   const [sensorData, setSensorData] = useState<SensorData | undefined>();
   const API_URL: string = "https://uistory-water-lvl.azurewebsites.net/api/";
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch(API_URL + "SensorStatus");
-        const data: SensorData = await response.json();
-        data.createdAtDate = new Date(data.createdAt);
-        setSensorData(data);
-      } catch (error: any) {
-        console.error("Error fetching data:", error);
-        toast.error(`Error fetching data: ${error.message}`);
-      }
-    };
-
-    fetchData();
+    setInterval(() => {
+      fetchData();
+    }, 1000);
   }, []);
+
+  const fetchData = async () => {
+    try {
+      const response = await fetch(API_URL + "SensorStatus");
+      const data: SensorData = await response.json();
+      data.createdAtDate = new Date(data.createdAt);
+      setSensorData(data);
+    } catch (error: any) {
+      console.error("Error fetching data:", error);
+      toast.error(`Error fetching data: ${error.message}`);
+    }
+  };
 
   function render() {
     if (sensorData) {
