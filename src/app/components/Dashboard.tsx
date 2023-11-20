@@ -2,7 +2,9 @@
 
 import WavesComponent from "@/app/components/WavesComponent";
 import { SensorData } from "@/app/models/SensorData";
+import Error from "next/error";
 import { useState, useEffect } from "react";
+import { toast } from "react-toastify";
 
 export default function Dashboard() {
   const [sensorData, setSensorData] = useState<SensorData | undefined>();
@@ -14,9 +16,9 @@ export default function Dashboard() {
         const data: SensorData = await response.json();
         data.createdAtDate = new Date(data.createdAt);
         setSensorData(data);
-        console.log(data);
-      } catch (error) {
+      } catch (error: any) {
         console.error("Error fetching data:", error);
+        toast.error(`Error fetching data: ${error.message}`);
       }
     };
 
