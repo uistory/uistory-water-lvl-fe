@@ -38,7 +38,7 @@ export default function Dashboard() {
 
     return (
       <div className="flex items-center justify-center h-screen">
-        <div className="text-3xl">Nemám Data. Utekaj Napľuť! TEST</div>
+        <div className="text-3xl">Nemám Data. Utekaj Napľuť!</div>
       </div>
     );
   }
