@@ -8,9 +8,8 @@ export interface WavesComponentProps {
 
 export default function WavesComponent(props: WavesComponentProps) {
   const { item } = props;
-  const neckLength: number = 800;
   const tankSize: number = 2000; // mm
-  const totalSize: number = tankSize + neckLength;
+  const totalSize: number = tankSize;
   const emptyTankRem: number = 55;
   const percentage: number = item.distance / totalSize;
   const fullnessPercentage: number = 1 - percentage;
