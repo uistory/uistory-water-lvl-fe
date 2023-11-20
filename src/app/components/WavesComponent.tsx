@@ -8,9 +8,8 @@ export interface WavesComponentProps {
 
 export default function WavesComponent(props: WavesComponentProps) {
   const { item } = props;
-  const tankSize: number = 200;
+  const tankSize: number = 2000; // mm
   const emptyTankRem: number = 55;
-  const fullTankRem: number = 0;
   const percentage: number = item.distance / tankSize;
   const fullnessPercentage: number = 1 - percentage;
   const currentLevelRem: number = emptyTankRem * percentage;
