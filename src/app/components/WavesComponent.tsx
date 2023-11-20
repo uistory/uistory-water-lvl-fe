@@ -107,8 +107,9 @@ export default function WavesComponent(props: WavesComponentProps) {
           </div>
           <div className="timestamp">
             <strong>{last}</strong>
+            <br />
+            <small>dist. {item.distance / 1000} m</small>
           </div>
-          <div>dist. {item.distance / 1000} m</div>
         </div>
       </div>
 
