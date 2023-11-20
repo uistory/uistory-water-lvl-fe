@@ -30,11 +30,9 @@ export default function Dashboard() {
   function render() {
     if (sensorData) {
       return (
-        <>
-          <div className="dashboard">
-            <WavesComponent item={sensorData}></WavesComponent>
-          </div>
-        </>
+        <div className="dashboard">
+          <WavesComponent item={sensorData}></WavesComponent>
+        </div>
       );
     }
 
