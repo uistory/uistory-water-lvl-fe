@@ -80,6 +80,23 @@ p {
   justify-content: center;
 }
 
+.border-left {
+  border-left: rgb(207, 207, 207);
+}
+
+.items-left {
+  justify-content: left !important;
+}
+
+.min-list-width {
+  width: 100%;
+}
+
+.icon-circle {
+  width: 3rem;
+  height: 3rem;
+}
+
 .timestamp {
   font-size: 1.5em;
   color: black;
@@ -88,6 +105,11 @@ p {
 .percentage {
   font-size: 10em;
 }
+
+.level {
+  color: #b1b1b1;
+}
+
 .inner-header {
   height: 65vh;
   width: 100%;

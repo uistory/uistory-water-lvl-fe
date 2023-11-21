@@ -1,24 +1,22 @@
 "use client";
 
+import { TankData } from "@/app/components/Dashboard";
 import { SensorData } from "@/app/models/SensorData";
 
 export interface WavesComponentProps {
   item: SensorData;
+  tankData: TankData;
 }
 
 export default function WavesComponent(props: WavesComponentProps) {
-  const { item } = props;
-  const tankSize: number = 2000; // mm
-  const totalSize: number = tankSize;
+  const { item, tankData } = props;
   const emptyTankRem: number = 55;
-  const percentage: number = item.distance / totalSize;
-  const fullnessPercentage: number = 1 - percentage;
-  const currentLevelRem: number = emptyTankRem * percentage;
+  const currentLevelRem: number = emptyTankRem * tankData.percentage;
   const last = getDateTimeString(item.createdAtDate);
   let baseColor: string = "";
   let fillColor: string = "";
 
-  calculateFillColor(fullnessPercentage);
+  calculateFillColor(tankData.fullnessPercentage);
 
   function getDateTimeString(date: Date): string {
     const daysOfWeek = [
@@ -41,9 +39,9 @@ export default function WavesComponent(props: WavesComponentProps) {
     const year = date.getFullYear();
     const hours = date.getHours();
     const minutes =
-      date.getMinutes() > 10 ? date.getMinutes() : "0" + date.getMinutes();
+      date.getMinutes() >= 10 ? date.getMinutes() : "0" + date.getMinutes();
     const seconds =
-      date.getSeconds() > 10 ? date.getSeconds() : "0" + date.getSeconds();
+      date.getSeconds() >= 10 ? date.getSeconds() : "0" + date.getSeconds();
 
     const dayOfWeek = daysOfWeek[date.getDay()];
     const timeString = `${hours}:${minutes}:${seconds}`;
@@ -106,12 +104,12 @@ export default function WavesComponent(props: WavesComponentProps) {
             }}
           >
             {" "}
-            {Math.round(fullnessPercentage * 100)}%
+            {Math.round(tankData.fullnessPercentage * 100)}%
           </div>
           <div className="timestamp">
             <strong>{last}</strong>
             <br />
-            <small>dist. {item.distance / 1000} m</small>
+            <small className="level">Hladina: {item.distance / 10} cm</small>
           </div>
         </div>
       </div>
