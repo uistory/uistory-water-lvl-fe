@@ -42,8 +42,9 @@ export default function WavesComponent(props: WavesComponentProps) {
     const hours = date.getHours();
     const minutes =
       date.getMinutes() > 10 ? date.getMinutes() : "0" + date.getMinutes();
+    const seconds = date.getSeconds();
     const dayOfWeek = daysOfWeek[date.getDay()];
-    const timeString = `${hours}:${minutes}`;
+    const timeString = `${hours}:${minutes}:${seconds}`;
     const formattedDay = day < 10 ? `0${day}` : day;
     const formattedMonth = month < 10 ? `0${month}` : month;
 
