@@ -18,7 +18,8 @@ export default function LitersUsageComponent(props: LitersUsageComponentProps) {
   const tankCapacity: number = 12000; // l
   const tankSize: number = 2000; // mm
   const fullnessPercentage: number = 1 - item.distance / tankSize;
-  const tankCapacityLeft: number = item.recentlyUsedLiters;
+  const tankCapacityLeft: number =
+    tankCapacity - tankCapacity * fullnessPercentage; // l
 
   // Liters used for each household activity
   const washingMachineUsage: number = 49; // liters
@@ -29,7 +30,7 @@ export default function LitersUsageComponent(props: LitersUsageComponentProps) {
 
   return (
     <div className="px-5 py-2">
-      <h1 className="p-4">Odhadovaný Zostatok</h1>
+      <h1 className="p-4">Odhadovaný zostatok</h1>
       <div className="">
         <div className="min-w-0 rounded-lg shadow-xs overflow-hidden bg-white dark:bg-gray-800">
           <div className="p-4">
@@ -37,7 +38,7 @@ export default function LitersUsageComponent(props: LitersUsageComponentProps) {
               Od včera ste minuli
               <strong style={{ color: "#3c82f6" }}>
                 {" "}
-                {tankCapacityLeft} l
+                {item.recentlyUsedLiters} l
               </strong>
             </div>
             <div>
