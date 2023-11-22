@@ -23,9 +23,7 @@ export default function Dashboard() {
   const API_URL: string = "https://water-level-be-db.azurewebsites.net/api/";
   let fillColor: string = "";
   useEffect(() => {
-    setInterval(() => {
-      fetchData();
-    }, 10000);
+    fetchData();
   }, []);
 
   const fetchData = async () => {
