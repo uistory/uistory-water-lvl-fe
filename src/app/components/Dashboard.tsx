@@ -20,12 +20,12 @@ export default function Dashboard() {
   const [sensorData, setSensorData] = useState<SensorData | undefined>();
   const [tankData, setTankData] = useState<TankData | undefined>();
   const [baseColor, setBaseColor] = useState<string | undefined>();
-  const API_URL: string = "https://uistory-water-lvl.azurewebsites.net/api/";
+  const API_URL: string = "https://water-level-be-db.azurewebsites.net/api/";
   let fillColor: string = "";
   useEffect(() => {
     setInterval(() => {
       fetchData();
-    }, 1000);
+    }, 10000);
   }, []);
 
   const fetchData = async () => {
@@ -84,7 +84,6 @@ export default function Dashboard() {
     return (
       <div className="flex items-center justify-center h-screen">
         <div className="text-3xl">Nemám Data. Utekaj Napľuť!</div>
-        
       </div>
     );
   }
