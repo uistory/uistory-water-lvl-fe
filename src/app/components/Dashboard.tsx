@@ -80,14 +80,15 @@ export default function Dashboard() {
   function render() {
     if (dashboardData && tankData) {
       return (
-        <div className="dashboard w-full grid grid-rows-1 sm:flex sm:flex-row grid-cols-[75%,25%]">
-          <div className="w-full sm:w-[75%] h-full">
+        <div className="lg:flex h-100 h-full">
+          <div className="lg:w-3/4">
             <WavesComponent
               item={dashboardData.sensorStatus}
               tankData={tankData}
             ></WavesComponent>
           </div>
-          <div className="w-full sm:w-[25%] h-full border-x">
+
+          <div className="lg:w-1/4 mt-4 lg:mt-0 h-full border-x">
             <LitersUsageComponent
               dashboard={dashboardData}
               baseColor={baseColor}

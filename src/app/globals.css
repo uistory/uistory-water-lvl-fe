@@ -80,6 +80,15 @@ p {
   justify-content: center;
 }
 
+@media (max-width: 1024px) {
+  .status {
+    bottom: 40%;
+  }
+  .min-list-width {
+    text-align: left;
+  }
+}
+
 .border-left {
   border-left: rgb(207, 207, 207);
 }
