@@ -1,10 +1,10 @@
 "use client";
 
 import { TankData } from "@/app/components/Dashboard";
-import { SensorData } from "@/app/models/SensorData";
+import { SensorStatusData } from "@/app/models/SensorStatusData";
 
 export interface WavesComponentProps {
-  item: SensorData;
+  item: SensorStatusData;
   tankData: TankData;
 }
 
@@ -19,6 +19,8 @@ export default function WavesComponent(props: WavesComponentProps) {
   calculateFillColor(tankData.fullnessPercentage);
 
   function getDateTimeString(date: Date): string {
+    console.log(date);
+    
     const daysOfWeek = [
       "Nedela",
       "Pondelok",

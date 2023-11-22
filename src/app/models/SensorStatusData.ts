@@ -1,4 +1,4 @@
-export interface SensorData {
+export interface SensorStatusData {
   id: number;
   distance: number;
   tankContentLiters: number;

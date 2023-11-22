@@ -2,7 +2,8 @@
 
 import LitersUsageComponent from "@/app/components/LitersUsageComponent";
 import WavesComponent from "@/app/components/WavesComponent";
-import { SensorData } from "@/app/models/SensorData";
+import { DashboardData } from "@/app/models/DashboardData";
+import { SensorStatusData } from "@/app/models/SensorStatusData";
 import Error from "next/error";
 import { useState, useEffect } from "react";
 import { toast } from "react-toastify";
@@ -17,7 +18,9 @@ export interface TankData {
 export default function Dashboard() {
   const tankSize: number = 2000; // mm
   const tankCapacity: number = 12000; // liters
-  const [sensorData, setSensorData] = useState<SensorData | undefined>();
+  const [dashboardData, setDashboardData] = useState<
+    DashboardData | undefined
+  >();
   const [tankData, setTankData] = useState<TankData | undefined>();
   const [baseColor, setBaseColor] = useState<string | undefined>();
   const API_URL: string = "https://water-level-be-db.azurewebsites.net/api/";
@@ -28,12 +31,15 @@ export default function Dashboard() {
 
   const fetchData = async () => {
     try {
-      const response = await fetch(API_URL + "SensorStatus");
-      const data: SensorData = await response.json();
-      data.createdAtDate = new Date(data.createdAt);
-      setSensorData(data);
-      const percentage: number = data.distance / tankSize;
+      const response = await fetch(API_URL + "SensorStatus/dashboard");
+      const dashboardData: DashboardData = await response.json();
+      dashboardData.sensorStatus.createdAtDate = new Date(
+        dashboardData.sensorStatus.createdAt
+      );
+      setDashboardData(dashboardData);
+      const percentage: number = dashboardData.sensorStatus.distance / tankSize;
       const fullnessPercentage: number = 1 - percentage;
+
       setTankData({
         percentage: percentage,
         tankCapacityLiters: tankCapacity,
@@ -60,18 +66,18 @@ export default function Dashboard() {
   }
 
   function render() {
-    if (sensorData && tankData) {
+    if (dashboardData && tankData) {
       return (
         <div className="dashboard w-full grid grid-rows-1 sm:flex sm:flex-row grid-cols-[75%,25%]">
           <div className="w-full sm:w-[75%] h-full">
             <WavesComponent
-              item={sensorData}
+              item={dashboardData.sensorStatus}
               tankData={tankData}
             ></WavesComponent>
           </div>
           <div className="w-full sm:w-[25%] h-full border-x">
             <LitersUsageComponent
-              item={sensorData}
+              dashboard={dashboardData}
               baseColor={baseColor}
             ></LitersUsageComponent>
           </div>

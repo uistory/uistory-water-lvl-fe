@@ -1,23 +1,25 @@
 "use client";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { SensorData } from "@/app/models/SensorData";
+import { SensorStatusData } from "@/app/models/SensorStatusData";
 import {
   faBath,
   faDroplet,
   faShower,
   faToilet,
 } from "@fortawesome/free-solid-svg-icons";
+import { DashboardData } from "@/app/models/DashboardData";
 
 export interface LitersUsageComponentProps {
-  item: SensorData;
+  dashboard: DashboardData;
   baseColor: string | undefined;
 }
 
 export default function LitersUsageComponent(props: LitersUsageComponentProps) {
-  const { item, baseColor } = props;
+  const { baseColor, dashboard } = props;
   const tankCapacity: number = 12000; // l
   const tankSize: number = 2000; // mm
-  const fullnessPercentage: number = 1 - item.distance / tankSize;
+  const fullnessPercentage: number =
+    1 - dashboard.sensorStatus.distance / tankSize;
   const tankCapacityLeft: number =
     tankCapacity - tankCapacity * fullnessPercentage; // l
 
@@ -38,7 +40,7 @@ export default function LitersUsageComponent(props: LitersUsageComponentProps) {
               Od včera ste minuli
               <strong style={{ color: "#3c82f6" }}>
                 {" "}
-                {item.recentlyUsedLiters} l
+                {Math.round(dashboard.recentlyUsedLiters)} l
               </strong>
             </div>
             <div>
