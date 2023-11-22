@@ -27,6 +27,10 @@ export default function Dashboard() {
   let fillColor: string = "";
   useEffect(() => {
     fetchData();
+
+    setTimeout(() => {
+      fetchData();
+    }, 10000);
   }, []);
 
   const fetchData = async () => {
