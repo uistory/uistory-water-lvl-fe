@@ -37,9 +37,7 @@ export default function Dashboard() {
     try {
       const response = await fetch(API_URL + "SensorStatus/dashboard");
       const dashboardData: DashboardData = await response.json();
-      dashboardData.sensorStatus.createdAtDate = new Date(
-        dashboardData.sensorStatus.createdAt
-      );
+      setDate(dashboardData);
       setDashboardData(dashboardData);
       const percentage: number = dashboardData.sensorStatus.distance / tankSize;
       const fullnessPercentage: number = 1 - percentage;
@@ -57,6 +55,16 @@ export default function Dashboard() {
       toast.error(`Error fetching data: ${error.message}`);
     }
   };
+
+  // Set From UTC
+  function setDate(dashboardData: DashboardData) {
+    dashboardData.sensorStatus.createdAtDate = new Date(
+      dashboardData.sensorStatus.createdAt
+    );
+    dashboardData.sensorStatus.createdAtDate.setHours(
+      dashboardData.sensorStatus.createdAtDate.getHours() + 1
+    );
+  }
 
   // Function to calculate the fill color based on the percentage
   function calculateFillColor(percentage: number) {

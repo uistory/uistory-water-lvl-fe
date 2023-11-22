@@ -20,7 +20,7 @@ export default function WavesComponent(props: WavesComponentProps) {
 
   function getDateTimeString(date: Date): string {
     console.log(date);
-    
+
     const daysOfWeek = [
       "Nedela",
       "Pondelok",
