@@ -28,7 +28,7 @@ export default function Dashboard() {
   useEffect(() => {
     fetchData();
 
-    setTimeout(() => {
+    setInterval(() => {
       fetchData();
     }, 10000);
   }, []);
