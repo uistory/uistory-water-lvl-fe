@@ -45,7 +45,7 @@ export default function LitersUsageComponent(props: LitersUsageComponentProps) {
               V nádrži ešte ostáva kapacita na
               <strong style={{ color: baseColor }}>
                 {" "}
-                {tankCapacityLeft} l
+                {Math.round(tankCapacityLeft)} l
               </strong>
             </div>
             <div>Čo znamená:</div>
