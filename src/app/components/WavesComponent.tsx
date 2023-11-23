@@ -100,7 +100,7 @@ export default function WavesComponent(props: WavesComponentProps) {
           }}
         >
           <div
-            className="percentage"
+            className="ml-10 percentage"
             style={{
               color: baseColor,
             }}
@@ -110,8 +110,6 @@ export default function WavesComponent(props: WavesComponentProps) {
           </div>
           <div className="timestamp">
             <strong>{last}</strong>
-            <br />
-            <small className="level">Hladina: {item.distance / 10} cm</small>
           </div>
         </div>
       </div>
