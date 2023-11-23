@@ -23,11 +23,12 @@ export default function Dashboard() {
   >();
   const [tankData, setTankData] = useState<TankData | undefined>();
   const [baseColor, setBaseColor] = useState<string | undefined>();
+  const [loading, setLoading] = useState(true);
+
   const API_URL: string = "https://water-level-be-db.azurewebsites.net/api/";
   let fillColor: string = "";
   useEffect(() => {
     fetchData();
-
     setInterval(() => {
       fetchData();
     }, 10000);
@@ -50,6 +51,7 @@ export default function Dashboard() {
       });
 
       calculateFillColor(fullnessPercentage);
+      setLoading(false);
     } catch (error: any) {
       console.error("Error fetching data:", error);
       toast.error(`Error fetching data: ${error.message}`);
@@ -78,6 +80,15 @@ export default function Dashboard() {
   }
 
   function render() {
+    if (loading) {
+      return (
+        <div className="loader">
+          <div className="drop"></div>
+          <div className="wave"></div>
+        </div>
+      );
+    }
+
     if (dashboardData && tankData) {
       return (
         <div className="lg:flex h-100 h-full">
