@@ -95,7 +95,7 @@ export default function WavesComponent(props: WavesComponentProps) {
           }}
         >
           <div
-            className="ml-10 percentage"
+            className="percentage"
             style={{
               color: baseColor,
             }}
