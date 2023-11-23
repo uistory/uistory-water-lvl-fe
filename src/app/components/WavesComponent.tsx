@@ -19,8 +19,6 @@ export default function WavesComponent(props: WavesComponentProps) {
   calculateFillColor(tankData.fullnessPercentage);
 
   function getDateTimeString(date: Date): string {
-    console.log(date);
-
     const daysOfWeek = [
       "Nedela",
       "Pondelok",
@@ -42,11 +40,8 @@ export default function WavesComponent(props: WavesComponentProps) {
     const hours = date.getHours();
     const minutes =
       date.getMinutes() >= 10 ? date.getMinutes() : "0" + date.getMinutes();
-    const seconds =
-      date.getSeconds() >= 10 ? date.getSeconds() : "0" + date.getSeconds();
-
     const dayOfWeek = daysOfWeek[date.getDay()];
-    const timeString = `${hours}:${minutes}:${seconds}`;
+    const timeString = `${hours}:${minutes}`;
     const formattedDay = day < 10 ? `0${day}` : day;
     const formattedMonth = month < 10 ? `0${month}` : month;
 
@@ -107,9 +102,9 @@ export default function WavesComponent(props: WavesComponentProps) {
           >
             {" "}
             {Math.round(tankData.fullnessPercentage * 100)}%
-          </div>
-          <div className="timestamp">
-            <strong>{last}</strong>
+            <div className="timestamp">
+              <strong>{last}</strong>
+            </div>
           </div>
         </div>
       </div>
