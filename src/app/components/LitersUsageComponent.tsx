@@ -50,7 +50,6 @@ export default function LitersUsageComponent(props: LitersUsageComponentProps) {
                 {Math.round(tankCapacityLeft)} l
               </strong>
             </div>
-            <div>Čo znamená:</div>
           </div>
           <div className="p-4 flex items-left">
             <div className="p-3 rounded-full icon-circle text-green-200 text-green-100 bg-green-100 bg-green-500">
